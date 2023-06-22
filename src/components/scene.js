@@ -1,6 +1,7 @@
 import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls, PerspectiveCamera, useGLTF } from "@react-three/drei";
 import { Suspense, useEffect, useRef } from "react";
+import { VRButton, ARButton, XR } from "@react-three/xr";
 
 function Scene() {
   const { scene } = useGLTF("./scene.glb");
@@ -16,6 +17,7 @@ function Scene() {
 
   return (
     <>
+      <VRButton />
       <Canvas
         ref={canvas}
         resize={{ scroll: true, debounce: { scroll: 50, resize: 0 } }}
@@ -27,17 +29,17 @@ function Scene() {
           rotation: [0, 0, 0],
         }}
       >
-        <OrbitControls></OrbitControls>
-        <ambientLight></ambientLight>
-        <pointLight position={[0, 20, 20]}></pointLight>
-        <SceneCamera></SceneCamera>
-        <mesh>
-          <Suspense fallback={<p></p>}>
-            <primitive object={scene}></primitive>
-          </Suspense>
-          <meshStandardMaterial color="orange" />
-        </mesh>
-        <axesHelper args={[5]} />
+        <XR>
+          <ambientLight></ambientLight>
+          <pointLight position={[0, 20, 20]}></pointLight>
+          <SceneCamera></SceneCamera>
+          <mesh>
+            <Suspense fallback={<p></p>}>
+              <primitive object={scene}></primitive>
+            </Suspense>
+          </mesh>
+          <axesHelper args={[5]} />
+        </XR>
       </Canvas>
     </>
   );
