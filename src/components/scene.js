@@ -8,38 +8,38 @@ function Scene() {
   const canvas = useRef(null);
 
   useEffect(() => {
-    window.addEventListener("resize", windowResize);
+    console.log(canvas.current);
   }, []);
 
-  const windowResize = (e) => {
-    console.log(e);
-  };
+  const windowResize = (e) => {};
 
   return (
     <>
-      <VRButton />
+      {/* <VRButton /> */}
       <Canvas
+        style={{ background: "#ff4500" }}
         ref={canvas}
         resize={{ scroll: true, debounce: { scroll: 50, resize: 0 } }}
         camera={{
-          position: [-51.366700187507824, 8, 2.6010219330894104],
-          near: 0.5,
+          position: [-36, 1, 0.05],
           fov: 90,
-          far: 1000,
-          rotation: [0, 0, 0],
+          near: 1,
+          far: 100,
+          zoom: 25,
         }}
+        orthographic={true}
       >
-        <XR>
-          <ambientLight></ambientLight>
-          <pointLight position={[0, 20, 20]}></pointLight>
-          <SceneCamera></SceneCamera>
-          <mesh>
-            <Suspense fallback={<p></p>}>
-              <primitive object={scene}></primitive>
-            </Suspense>
-          </mesh>
-          <axesHelper args={[5]} />
-        </XR>
+        {/* <XR> */}
+        <ambientLight></ambientLight>
+        <pointLight position={[0, 20, 20]}></pointLight>
+        <SceneCamera></SceneCamera>
+        <mesh>
+          <Suspense fallback={<p></p>}>
+            <primitive object={scene}></primitive>
+          </Suspense>
+        </mesh>
+        <axesHelper args={[5]} />
+        {/* </XR> */}
       </Canvas>
     </>
   );
@@ -49,7 +49,7 @@ function SceneCamera() {
   useFrame((state) => {
     // state?.camera?.lerp({ x: 10, y: 30, z: 40 }, 0.1);
     // state.camera.lookAt(0, 0, 0);
-    console.log(state.camera);
+    console.log(state);
   });
 }
 export default Scene;
