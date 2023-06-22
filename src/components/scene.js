@@ -15,7 +15,7 @@ function Scene() {
 
   return (
     <>
-      {/* <VRButton /> */}
+      <VRButton />
       <Canvas
         style={{ background: "#ff4500" }}
         ref={canvas}
@@ -29,7 +29,7 @@ function Scene() {
         }}
         orthographic={true}
       >
-        {/* <XR> */}
+        <XR>
         <ambientLight></ambientLight>
         <pointLight position={[0, 20, 20]}></pointLight>
         <SceneCamera></SceneCamera>
@@ -38,8 +38,7 @@ function Scene() {
             <primitive object={scene}></primitive>
           </Suspense>
         </mesh>
-        <axesHelper args={[5]} />
-        {/* </XR> */}
+        </XR>
       </Canvas>
     </>
   );
