@@ -30,14 +30,15 @@ function Scene() {
         orthographic={true}
       >
         <XR>
-        <ambientLight></ambientLight>
-        <pointLight position={[0, 20, 20]}></pointLight>
-        <SceneCamera></SceneCamera>
-        <mesh>
-          <Suspense fallback={<p></p>}>
-            <primitive object={scene}></primitive>
-          </Suspense>
-        </mesh>
+          <OrbitControls></OrbitControls>
+          <ambientLight></ambientLight>
+          <pointLight position={[0, 20, 20]}></pointLight>
+          <SceneCamera></SceneCamera>
+          <mesh>
+            <Suspense fallback={<p></p>}>
+              <primitive object={scene}></primitive>
+            </Suspense>
+          </mesh>
         </XR>
       </Canvas>
     </>
